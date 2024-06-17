@@ -9,7 +9,7 @@ services:
       - db_data:/var/lib/mysql
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_ROOT_PASSWORD=wordpress
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD=wordpress
@@ -23,7 +23,8 @@ services:
         retries: 10
   wordpress:
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     image: wordpress:latest
     volumes:
       - wp_data:/var/www/html
@@ -40,7 +41,7 @@ services:
   redis:
     image: wodby/redis:6
   wpcli:
-    depends_on: 
+    depends_on:
       wordpress:
         condition: service_started
       db:
