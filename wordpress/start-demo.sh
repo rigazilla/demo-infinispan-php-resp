@@ -5,3 +5,9 @@ docker compose exec wpcli  wp plugin install redis-cache
 docker compose exec wpcli wp config set WP_REDIS_HOST redis
 docker compose exec wpcli wp plugin activate redis-cache
 docker compose exec wpcli wp redis enable
+echo '*************************************'
+echo site available at: http://wordpress.docker.localhost/
+echo user:demo password:demo
+echo To check Redis activity:
+echo docker compose exec redis redis-cli info
+echo '*************************************'
