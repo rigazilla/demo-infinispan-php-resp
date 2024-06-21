@@ -13,19 +13,23 @@ All the demo can be played in the same way:
 ```
 This will start the cms and configure Redis as cache layer.
 
-5. web site is available at: `http://<foldername>.docker.localhost`, credentials for admin pages are `demo:demo`
-6. check that Redis is running correctly with:
+1. The script completes logging the site homepage, credentials for admin pages are `demo:demo`
+2. check that Redis is running correctly with:
 ```bash
 docker compose exec redis redis-cli info
 ```
-7. run
+1. run
 ```bash
 ./switch-to-infinispan.sh
 ```
 This will switch from Redis to Infinispan, just redefining the cache layer endpoint.
 
-8. Access the web site to create some requests for Infinispan
-9. Check that Infinispan is now running as cache with:
+1. Access the web site to create some requests for Infinispan
+2. Check that Infinispan is now running as cache with:
+```bash
+tail -f infinispan/log/resp-access.log
 ```
-bash tail -f infinispan/log/resp-access.log
+1.  Stop the demo with:
+```bash
+./stop-demo.sh
 ```
